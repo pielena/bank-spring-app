@@ -3,17 +3,17 @@ package com.bank.spring.service.impl;
 import com.bank.spring.entity.User;
 import com.bank.spring.repository.UserRepository;
 import com.bank.spring.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public User getUserById(Long id) {
