@@ -6,17 +6,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan("com.bank.spring")
+//@Configuration
+//@EnableWebMvc
+//@ComponentScan(basePackages = "com.bank.spring")
 public class WebConfig {
 
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-        internalResourceViewResolver.setPrefix("/WEB-INF/view/");
-        internalResourceViewResolver.setSuffix(".jsp");
-        return internalResourceViewResolver;
-    }
+//    @Bean
+//    public ViewResolver internalResourceViewResolver() {
+//        InternalResourceViewResolver bean = new InternalResourceViewResolver();
+//        bean.setViewClass(JstlView.class);
+//        bean.setPrefix("/WEB-INF/");
+//        bean.setSuffix(".jsp");
+//        return bean;
+//    }
 }

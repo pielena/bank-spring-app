@@ -39,7 +39,7 @@ public class Account {
     @Column(name = "status")
     private AccountStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
 }
