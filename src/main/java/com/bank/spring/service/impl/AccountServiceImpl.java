@@ -4,18 +4,17 @@ import com.bank.spring.entity.Account;
 import com.bank.spring.entity.User;
 import com.bank.spring.repository.AccountRepository;
 import com.bank.spring.service.AccountService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-
+@Service
+@AllArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
-
-    public AccountServiceImpl(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
 
     @Override
     public Account saveAccount(Account account) {
@@ -28,13 +27,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User getAccountById(Long id) {
-        return null;
+    public Account getAccountById(Long id) {
+        Account account = null;
+        Optional<Account> optionalAccount = accountRepository.findById(id);
+        if (optionalAccount.isPresent()) {
+            account = optionalAccount.get();
+        }
+        return account;
     }
 
     @Override
     public List<Account> getAllAccounts() {
-        return null;
+        return accountRepository.findAll();
     }
 
     @Override

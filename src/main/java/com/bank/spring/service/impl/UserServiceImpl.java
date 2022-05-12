@@ -23,8 +23,6 @@ public class UserServiceImpl implements UserService {
             user = optionalUser.get();
         }
         return user;
-
-//        return userRepository.getOne(id);
     }
 
     @Override

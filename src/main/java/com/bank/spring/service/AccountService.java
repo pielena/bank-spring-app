@@ -11,7 +11,7 @@ public interface AccountService {
 
     void deleteAccount(Account account);
 
-    User getAccountById(Long id);
+    Account getAccountById(Long id);
 
     List<Account> getAllAccounts();
 

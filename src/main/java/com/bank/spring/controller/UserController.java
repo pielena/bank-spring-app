@@ -19,15 +19,13 @@ public class UserController {
 
 
     @GetMapping("/users")
-    public List<User> showAllUsers() {
+    public List<User> getAllUsers() {
         List<User> allUsers = userService.getAllUsers();
         return allUsers;
     }
 
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable Long id) {
-//        return userService.getUserById(id);
-        User user = userService.getUserById(id);
-        return user;
+        return userService.getUserById(id);
     }
 }
