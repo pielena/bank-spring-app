@@ -1,10 +1,12 @@
 package com.bank.spring.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,12 +20,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString(exclude = "user")
 @Entity
 @Table(name = "account")
 public class Account {
@@ -41,14 +44,12 @@ public class Account {
     private BigDecimal balance;
 
     @Column(name = "create_date")
-    private Date creatingDate;
+    private LocalDateTime creatingDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private AccountStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
+    @ManyToOne
     private User user;
 }
