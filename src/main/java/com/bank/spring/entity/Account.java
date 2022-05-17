@@ -1,7 +1,6 @@
 package com.bank.spring.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.bank.spring.entity.dto.AccountDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
@@ -52,4 +49,13 @@ public class Account {
 
     @ManyToOne
     private User user;
+
+    public static Account from(AccountDto accountDto) {
+        Account account = new Account();
+        account.setType(accountDto.getType());
+        account.setBalance(accountDto.getBalance());
+        account.setCreatingDate(accountDto.getCreatingDate());
+        account.setStatus(accountDto.getStatus());
+        return account;
+    }
 }
