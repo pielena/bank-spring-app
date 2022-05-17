@@ -1,13 +1,11 @@
 package com.bank.spring.entity;
 
-import lombok.AccessLevel;
+import com.bank.spring.entity.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,9 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -57,22 +53,26 @@ public class User {
     @Column(name = "birthday")
     private LocalDate birthday;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Account> accounts = new ArrayList<>();
 
     public void addAccount(Account account) {
         accounts.add(account);
-        account.setUser(this);
-    }
-
-    public void addAccounts(List<Account> accounts) {
-        this.accounts.addAll(accounts);
-        accounts.forEach(account -> account.setUser(this));
     }
 
     public void removeAccount(Account account) {
         accounts.remove(account);
+    }
+
+    public static User from(UserDto userDto) {
+        User user = new User();
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setAddress(userDto.getAddress());
+        user.setPhoneNumber(userDto.getPhoneNumber());
+        user.setEmail(userDto.getEmail());
+        user.setBirthday(userDto.getBirthday());
+        return user;
     }
 }
